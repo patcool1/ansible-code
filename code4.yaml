@@ -1,0 +1,18 @@
+   ---
+- hosts: ws
+  become: yes
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+   - name: Install lxml
+      package:
+         name: python-lxml
+         state: present 
+    - name: download artifact
+      maven_artifact:
+        group_id: qa
+        artifact_id: 'bioMedical/0.0.7-SNAPSHOT'
+        repository_url: 'http://198.58.119.40:8081/repository/prof-repo'
+        username: admin
+        password: devops
+        dest: /tmp/serge.jar
